@@ -194,12 +194,20 @@ client.connect(err => {
             .then(result => {
                 res.send(result.modifiedCount > 0);
             })
+            console.log("done");
+            sleep(500);
         })
 
     })
 });
 
-
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
 
 app.listen(port, ()=>{
     console.log("Server is running...");
