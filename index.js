@@ -130,6 +130,7 @@ client.connect(err => {
         })
     })
 
+    //update student information
     app.patch('/update-student/:id', (req, res) => {
         studentCollection.updateOne({_id: ObjectId(req.params.id)},
         {
