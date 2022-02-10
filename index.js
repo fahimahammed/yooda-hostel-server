@@ -183,31 +183,20 @@ client.connect(err => {
     })
 
     // update status (bulk action)
-    app.patch('/update-status', (req, res) => {
-        for(let i=0; i<req.body.length; i++ ) {
-            studentCollection.updateOne({_id: ObjectId(req.body[i]._id)},
-            {
-                $set: { 
-                    status: req.body[i].status
-                 }
-            })
-            .then(result => {
-                res.send(result.modifiedCount > 0);
-            })
-            console.log("done");
-            sleep(100);
-        }
-
+    app.patch('/update-status/:id', (req, res) => {
+        studentCollection.updateOne({_id: ObjectId(req.params.id)},
+        {
+            $set: { 
+                status: req.body.status
+             }
+        })
+        .then(result => {
+            console.log(req.body);
+        })
     })
+
 });
 
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-  }
 
 app.listen(port, ()=>{
     console.log("Server is running...");
