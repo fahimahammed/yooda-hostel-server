@@ -185,10 +185,10 @@ client.connect(err => {
     // update status (bulk action)
     app.patch('/update-status', (req, res) => {
         for(let i=0; i<req.body.length; i++ ) {
-            studentCollection.updateOne({_id: ObjectId(item[i]._id)},
+            studentCollection.updateOne({_id: ObjectId(req.body.item[i]._id)},
             {
                 $set: { 
-                    status: item[i].status
+                    status: req.body.item[i].status
                  }
             })
             .then(result => {
