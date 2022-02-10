@@ -192,10 +192,10 @@ client.connect(err => {
                  }
             })
             .then(result => {
-                res.send(result.modifiedCount > 0);
+                sleep(500);
             })
             console.log("done");
-            sleep(500);
+            ;
         })
 
     })
